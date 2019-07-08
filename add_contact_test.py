@@ -8,12 +8,11 @@ class AddContact(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
-    
-    def test_add_contact(self):
-        wd = self.wd
-        # open homepage
+
+    def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/")
-        # login
+
+    def login(self, wd):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -21,8 +20,11 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("//input[@value='Login']").click()
-        # open add contact page
+
+    def open_add_contact_page(self, wd):
         wd.find_element_by_link_text("add new").click()
+
+    def create_contact(self, wd):
         # fill contact information
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -97,8 +99,21 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys("notes")
         # submit contact info
         wd.find_element_by_xpath("//input[@name='submit']").click()
-        # logout
+
+    def back_to_contacts_list(self, wd):
+        wd.find_element_by_link_text("home").click()
+
+    def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
+
+    def test_add_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd)
+        self.open_add_contact_page(wd)
+        self.create_contact(wd)
+        self.back_to_contacts_list(wd)
+        self.logout(wd)
 
     def tearDown(self):
         self.wd.quit()
