@@ -118,6 +118,17 @@ class AddContact(unittest.TestCase):
         self.back_to_contacts_list(wd)
         self.logout(wd)
 
+    def test_add_empty_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_add_contact_page(wd)
+        self.create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", homephone="", mobilephone="", workphone="", fax="",
+                            email1="", email2="", email3="", homepage="", bday="", bmonth="", byear="", aday="", amonth="", ayear="", address2="",
+                            homephone2="", notes=""))
+        self.back_to_contacts_list(wd)
+        self.logout(wd)
+
     def tearDown(self):
         self.wd.quit()
 
