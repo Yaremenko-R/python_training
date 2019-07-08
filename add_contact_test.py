@@ -124,7 +124,7 @@ class AddContact(unittest.TestCase):
         self.login(wd, username="admin", password="secret")
         self.open_add_contact_page(wd)
         self.create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", homephone="", mobilephone="", workphone="", fax="",
-                            email1="", email2="", email3="", homepage="", bday="", bmonth="", byear="", aday="", amonth="", ayear="", address2="",
+                            email1="", email2="", email3="", homepage="", bday="12", bmonth="February", byear="1990", aday="15", amonth="March", ayear="1995", address2="",
                             homephone2="", notes=""))
         self.back_to_contacts_list(wd)
         self.logout(wd)
