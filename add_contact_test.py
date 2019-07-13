@@ -14,6 +14,7 @@ class AddContact(unittest.TestCase):
         wd.get("http://localhost/addressbook/")
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -26,6 +27,7 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_link_text("add new").click()
 
     def create_contact(self, wd, contact):
+        self.open_add_contact_page(wd)
         # fill contact information
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -100,6 +102,7 @@ class AddContact(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys(contact.notes)
         # submit contact info
         wd.find_element_by_xpath("//input[@name='submit']").click()
+        self.back_to_contacts_list(wd)
 
     def back_to_contacts_list(self, wd):
         wd.find_element_by_link_text("home").click()
@@ -109,24 +112,18 @@ class AddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_add_contact_page(wd)
         self.create_contact(wd, Contact(firstname="fn", middlename="mn", lastname="ln", nickname="nn", title="title", company="company", address="address", homephone="home", mobilephone="mobile", workphone="work", fax="fax",
                             email1="e1", email2="e2", email3="e3", homepage="homepage", bday="12", bmonth="February", byear="1990", aday="15", amonth="March", ayear="1995", address2="address",
                             homephone2="home", notes="notes"))
-        self.back_to_contacts_list(wd)
         self.logout(wd)
 
     def test_add_empty_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_add_contact_page(wd)
         self.create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", homephone="", mobilephone="", workphone="", fax="",
                             email1="", email2="", email3="", homepage="", bday="12", bmonth="February", byear="1990", aday="15", amonth="March", ayear="1995", address2="",
                             homephone2="", notes=""))
-        self.back_to_contacts_list(wd)
         self.logout(wd)
 
     def tearDown(self):
