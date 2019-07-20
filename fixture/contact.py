@@ -96,7 +96,7 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.back_to_contacts_list()
 
-    def edit_first_contact(self, contact):
+    def modify_first_contact(self, contact):
         wd = self.app.wd
         self.back_to_contacts_list()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
