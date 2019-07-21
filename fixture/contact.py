@@ -17,7 +17,8 @@ class ContactHelper:
 
     def back_to_contacts_list(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("add")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
