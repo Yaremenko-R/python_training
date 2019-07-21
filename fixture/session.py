@@ -3,15 +3,21 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        wd.find_element_by_name(field_name).click()
+        wd.find_element_by_name(field_name).clear()
+        wd.find_element_by_name(field_name).send_keys(text)
+
+    def fill_login_form(self, password, username):
+        wd = self.app.wd
+        self.change_field_value("user", username)
+        self.change_field_value("pass", password)
+
     def login(self, username, password):
         wd = self.app.wd
         self.app.open_home_page()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
+        self.fill_login_form(password, username)
         wd.find_element_by_css_selector("input[type=\"submit\"]").click()
 
     def logout(self):
