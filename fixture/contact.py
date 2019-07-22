@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import Select
 
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -50,28 +51,27 @@ class ContactHelper:
         self.change_field_value("phone2", contact.homephone2)
         self.change_field_value("notes", contact.notes)
 
+    def fill_select_info(self, field_name, text):
+        wd = self.app.wd
+        wd.find_element_by_name(field_name).click()
+        Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
+
     def fill_birth_info(self, contact):
         wd = self.app.wd
-        wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
-        wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
+        self.fill_select_info("bday", contact.bday)
+        self.fill_select_info("bmonth", contact.bmonth)
 
     def fill_aniv_info(self, contact):
         wd = self.app.wd
-        wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
-        wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
+        self.fill_select_info("aday", contact.aday)
+        self.fill_select_info("amonth", contact.amonth)
 
     def create(self, contact):
         wd = self.app.wd
         self.open_add_contact_page()
-        # fill contact information
         self.fill_contact_form(contact)
         self.fill_birth_info(contact)
         self.fill_aniv_info(contact)
-        # submit contact info
         wd.find_element_by_xpath("//input[@name='submit']").click()
         self.back_to_contacts_list()
 
@@ -91,7 +91,6 @@ class ContactHelper:
         wd = self.app.wd
         self.back_to_contacts_list()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        # fill contact information
         self.fill_contact_form(contact)
         self.fill_birth_info(contact)
         self.fill_aniv_info(contact)
