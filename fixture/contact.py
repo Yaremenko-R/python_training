@@ -97,10 +97,13 @@ class ContactHelper:
         self.back_to_contacts_list()
         self.contact_cache = None
 
-    def modify_first_contact(self, contact):
+    def modify_first_contact(self, index, contact):
+        self.modify_contact_by_index(0, contact)
+
+    def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
         self.back_to_contacts_list()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.select_contact_by_index(index)
         self.fill_contact_form(contact)
         self.fill_birth_info(contact)
         self.fill_aniv_info(contact)
