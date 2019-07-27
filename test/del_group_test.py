@@ -4,10 +4,10 @@ from model.group import Group
 
 
 def test_delete_some_group(app):
-    old_groups = app.group.get_group_list()
     group = Group(name="TEST")
     if app.group.count() == 0:
         app.group.create(group)
+    old_groups = app.group.get_group_list()
     index = randrange(len(old_groups))
     app.group.delete_group_by_index(index)
     assert len(old_groups) - 1 == app.group.count()
