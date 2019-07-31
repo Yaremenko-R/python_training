@@ -94,6 +94,7 @@ class ContactHelper:
         self.select_contact_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        wd.find_element_by_css_selector("div.msgbox")
         self.back_to_contacts_list()
         self.contact_cache = None
 
@@ -103,7 +104,7 @@ class ContactHelper:
     def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
         self.back_to_contacts_list()
-        wd.find_element_by_xpath("//img[@alt='Edit']")[index].click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_contact_form(contact)
         self.fill_birth_info(contact)
         self.fill_aniv_info(contact)
@@ -123,10 +124,9 @@ class ContactHelper:
             wd = self.app.wd
             self.open_home_page()
             self.contact_cache = []
-            for element in wd.find_elements_by_class_name("entry"):
-                for cell in element.find_elements_by_tag_name("td"):
-                    fname = cell.find_element_by_tag_name("td")[3].text
-                    lname = cell.find_element_by_tag_name("td")[2].text
-                    id = element.find_element_by_name("selected[]").get_attribute("value")
-                    self.contact_cache.append(Contact(firstname=fname, lastname=lname , id=id))
+            for element in wd.find_elements_by_name("entry"):
+                fname = element.find_elements_by_tag_name("td")[2].text
+                lname = element.find_elements_by_tag_name("td")[1].text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.contact_cache.append(Contact(firstname=fname, lastname=lname , id=id))
         return list(self.contact_cache)
