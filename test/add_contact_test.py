@@ -4,9 +4,9 @@ from model.contact import Contact
 
 def test_add_contact(app):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname="fnn", middlename="mn", lastname="ln", nickname="nn", title="title", company="company", address="address", homephone="home", mobilephone="mobile", workphone="work", fax="fax",
+    contact = Contact(firstname="fnn", middlename="mn", lastname="ln", nickname="nn", title="title", company="company", address="address", homephone="12345", mobilephone="54321", workphone="09876", fax="fax",
                                email1="e1", email2="e2", email3="e3", homepage="homepage", bday="12", bmonth="February", byear="1990", aday="15", amonth="March", ayear="1995", address2="address",
-                               homephone2="home", notes="notes")
+                               homephone2="11111", notes="notes")
     app.contact.create(contact)
     assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
