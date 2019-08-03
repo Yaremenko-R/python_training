@@ -128,9 +128,12 @@ class ContactHelper:
                 cells = row.find_elements_by_tag_name("td")
                 fname = cells[2].text
                 lname = cells[1].text
+                address = cells[3].text
                 id = cells[0].get_attribute("value")
                 all_phones = cells[5].text
-                self.contact_cache.append(Contact(firstname=fname, lastname=lname , id=id, all_phones_from_home_page=all_phones))
+                all_emails = cells[4].text
+                self.contact_cache.append(Contact(firstname=fname, lastname=lname , id=id, all_phones_from_home_page=all_phones,
+                                                  address=address, all_emails_from_home_page=all_emails))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -152,13 +155,18 @@ class ContactHelper:
         self.open_contact_to_edit_by_index(index)
         fname = wd.find_element_by_name("firstname").get_attribute("value")
         lname = wd.find_element_by_name("lastname").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
         id = wd.find_element_by_name("id").get_attribute("value")
         homephone = wd.find_element_by_name("home").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         homephone2 = wd.find_element_by_name("phone2").get_attribute("value")
+        email1 = wd.find_element_by_name("email").get_attribute("value")
+        email2 = wd.find_element_by_name("email2").get_attribute("value")
+        email3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contact(firstname=fname, lastname=lname, id=id, homephone=homephone, workphone=workphone,
-                       mobilephone=mobilephone, homephone2=homephone2)
+                       mobilephone=mobilephone, homephone2=homephone2, address=address, email1=email1,
+                       email2=email2, email3=email3)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -179,6 +187,12 @@ class ContactHelper:
                                     filter(lambda x: x is not None,
                                            [contact.homephone, contact.mobilephone, contact.workphone,
                                             contact.homephone2]))))
+
+    def merge_emails_like_on_home_page(self, contact):
+        return "\n".join(filter(lambda x: x != "",
+                                map(lambda x: self.clear(x),
+                                    filter(lambda x: x is not None,
+                                           [contact.email1, contact.email2, contact.email3]))))
 
 
 
