@@ -1,8 +1,8 @@
-from fixture import group
 from model.group import Group
 import pytest
 import random
 import string
+
 
 def random_string(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + string.punctuation + " " * 10
@@ -10,7 +10,8 @@ def random_string(prefix, maxlen):
 
 
 test_data = [Group(name="", header="", footer="")] +[
-    Group(name=random_string("name", 15), header=random_string("header", 15), footer=random_string("footer", 15))]
+    Group(name=random_string("name", 15), header=random_string("header", 15), footer=random_string("footer", 15))
+    for i in range(3)]
 
 
 @pytest.mark.parametrize("group", test_data, ids=[repr(x) for x in test_data])
