@@ -1,6 +1,7 @@
 import pytest
-import json
+import jsonpickle
 import os.path
+import json
 from fixture.application import Application
 import importlib
 
@@ -51,4 +52,5 @@ def load_form_module(module):
 
 
 def load_form_json(file):
-    pass
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.json" % file)) as f:
+        return  jsonpickle.decode(f.read())
