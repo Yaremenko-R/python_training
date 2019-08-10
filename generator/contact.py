@@ -23,7 +23,7 @@ for o, a in opts:
         f = a
 
 # Fixed data
-# from data.contact import constant as test_data добавить в файл add_contact_test.py
+# from data.contacts import constant as test_data добавить в файл add_contact_test.py
 constant = [
     Contact(firstname="firstname1", middlename="middlename1", lastname="lastname1"),
     Contact(firstname="firstname2", middlename="middlename2", lastname="lastname2")
@@ -31,7 +31,7 @@ constant = [
 
 
 # Random data
-# from data.contact import test_data добавить в файл add_contact_test.py
+# from data.contacts import test_data добавить в файл add_contact_test.py
 def random_string(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + string.punctuation + " " * 10
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
