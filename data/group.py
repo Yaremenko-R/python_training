@@ -9,6 +9,7 @@ constant = [
     Group(name="name2", header="header2", footer="footer2")
 ]
 
+
 # Random data
 # from data.group import test_data добавить в файл add_group_test.py
 def random_string(prefix, maxlen):
