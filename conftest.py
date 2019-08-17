@@ -9,6 +9,7 @@ import importlib
 fixture = None
 target = None
 
+
 def load_config(file):
     global target
     if target is None:
@@ -16,6 +17,7 @@ def load_config(file):
         with open(config_file) as f:
             target = json.load(f)
     return  target
+
 
 @pytest.fixture
 def app(request):
