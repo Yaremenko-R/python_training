@@ -3,7 +3,7 @@ from model.group import Group
 from random import randrange
 
 
-def test_add_some_contact_to_some_group(app, db, orm):
+def test_add_some_contact_to_some_group(app, orm):
     contact = Contact(firstname="fn500", lastname="ln")
     group = Group(name="TEST")
     if orm.get_contact_list() == 0:

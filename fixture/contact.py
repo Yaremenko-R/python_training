@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import Select
 from model.contact import Contact
 import re
 
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -207,7 +208,6 @@ class ContactHelper:
         wd.find_element_by_name("add").click()
         self.back_to_contacts_list()
         self.contact_cache = None
-
 
 
 
