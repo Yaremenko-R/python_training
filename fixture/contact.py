@@ -195,20 +195,32 @@ class ContactHelper:
                                     filter(lambda x: x is not None,
                                            [contact.email1, contact.email2, contact.email3]))))
 
-    def select_group_by_index_on_homepage(self, index):
+    def select_group_to_add_by_index_on_homepage(self, index):
         wd = self.app.wd
         Select(wd.find_element_by_name("to_group")).select_by_index(index)
+
+    def select_group_to_del_by_index_on_homepage(self, index):
+        wd = self.app.wd
+        Select(wd.find_element_by_name("group")).select_by_index(index)
 
     def add_contact_by_index_to_group(self, cindex, gindex):
         wd = self.app.wd
         self.back_to_contacts_list()
         self.select_contact_by_index(cindex)
         wd.find_element_by_name("to_group").click()
-        self.select_group_by_index_on_homepage(gindex)
+        self.select_group_to_add_by_index_on_homepage(gindex)
         wd.find_element_by_name("add").click()
         self.back_to_contacts_list()
         self.contact_cache = None
 
+    def del_contact_by_index_from_group(self, cindex, gindex):
+        wd = self.app.wd
+        self.back_to_contacts_list()
+        self.select_group_to_del_by_index_on_homepage(gindex)
+        self.select_contact_by_index(cindex)
+        wd.find_element_by_name("remove").click()
+        self.back_to_contacts_list()
+        self.contact_cache = None
 
 
 
