@@ -21,6 +21,6 @@ def test_add_some_contact_to_some_group(app, orm):
         contacts.append(contact)
         cindex = -1
     app.contact.add_contact_by_index_to_group(cindex, gindex)
-    target_contact_groups = sorted(orm.get_groups_contact_added(contact_to_add), key=Group.id_or_max)
-    contacts_in_target_group = sorted(orm.get_contacts_in_group(group_to_add), key=Group.id_or_max)
-    assert contacts_in_target_group in target_contact_groups
+    contacts_added_to_target_group = orm.get_contacts_in_group(group_to_add)
+    assert contact_to_add in contacts_added_to_target_group
+
