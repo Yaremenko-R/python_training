@@ -14,3 +14,9 @@ Scenario: Delete a contact
  Given an index of random contact from the list
  When I delete the contact from the list
  Then the new contact list is equal to the old list without the deleted contact
+
+Scenario: Modify a contact
+ Given a non-empty contact list
+ Given an index of random contact from the list
+ When I modify the <firstname> and the <lastname> of the random contact from the list
+ Then the new contact list is equal to the old one
