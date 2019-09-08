@@ -1,0 +1,69 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "test",
+    "children" : [ {
+      "name" : "add_group_test",
+      "children" : [ {
+        "name" : "test_add_group[None",
+        "children" : [ {
+          "name" : "test_add_group[None:::]",
+          "uid" : "f407c64cd18a7642",
+          "parentUid" : "92bce817151b8d15c78abffd1865afae",
+          "status" : "passed",
+          "time" : {
+            "start" : 1567956393160,
+            "stop" : 1567956397421,
+            "duration" : 4261
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "None:::" ]
+        } ],
+        "uid" : "92bce817151b8d15c78abffd1865afae"
+      }, {
+        "name" : "test_add_group[None:nameL _Zq4t#ZS E:headerM-3$:footerXquR({sHKK&yUE]",
+        "uid" : "8161f38bc513668c",
+        "parentUid" : "cca53159822780b34ccae5cf5efa64ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1567956397627,
+          "stop" : 1567956401557,
+          "duration" : 3930
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "None:nameL _Zq4t#ZS E:headerM-3$:footerXquR({sHKK&yUE" ]
+      }, {
+        "name" : "test_add_group[None:nameF^|4E vYx:header p`=F6dx7C S(:footer]",
+        "uid" : "3702aa9b6c8c3130",
+        "parentUid" : "cca53159822780b34ccae5cf5efa64ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1567956401753,
+          "stop" : 1567956405614,
+          "duration" : 3861
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "None:nameF^|4E vYx:header p`=F6dx7C S(:footer" ]
+      }, {
+        "name" : "test_add_group[None:name O8>a7bD:header-:footer lNy_u9+]",
+        "uid" : "50ced06053de923f",
+        "parentUid" : "cca53159822780b34ccae5cf5efa64ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1567956405834,
+          "stop" : 1567956409777,
+          "duration" : 3943
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "None:name O8>a7bD:header-:footer lNy_u9+" ]
+      } ],
+      "uid" : "cca53159822780b34ccae5cf5efa64ae"
+    } ],
+    "uid" : "ff2b04dbb9c449a4d40723f51d841925"
+  } ]
+}
